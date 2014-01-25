@@ -37,7 +37,7 @@ func MaxInt(ints ...int) (m int) {
 func MaxIntIndex(ints ...int) (i int) {
     m := MinInf
     for k, v := range ints {
-        if v > m {
+        if v >= m {
             m, i = v, k
         }
     }
@@ -61,7 +61,7 @@ func MinInt(ints ...int) (m int) {
 func MinIntIndex(ints ...int) (i int) {
     m := Inf
     for k, v := range ints {
-        if v < m {
+        if v <= m {
             m, i = v, k
         }
     }
