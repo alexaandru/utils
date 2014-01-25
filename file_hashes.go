@@ -3,7 +3,6 @@ package utils
 import (
     "crypto/md5"
     "fmt"
-    u "github.com/alexaandru/utils"
     "io"
     "os"
     "path/filepath"
@@ -32,7 +31,7 @@ func (fh FileHashes) Dump(fname string) (e error) {
 
 // Load reads file hashes from disk.
 func (fh FileHashes) Load(fname string) {
-    for _, line := range strings.Split(u.LoadFile(fname), "\n") {
+    for _, line := range strings.Split(LoadFile(fname), "\n") {
         if line == "" {
             continue
         }
@@ -78,6 +77,6 @@ func FileHashesNew(root string) (hashes FileHashes) {
 // Compute an md5 hash of a file.
 func fileHash(fname string) string {
     hash := md5.New()
-    io.WriteString(hash, u.LoadFile(fname))
+    io.WriteString(hash, LoadFile(fname))
     return fmt.Sprintf("%x", hash.Sum(nil))
 }
