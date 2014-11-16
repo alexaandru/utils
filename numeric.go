@@ -14,57 +14,106 @@ const MinInf = -(Inf - 1)
 
 // AbsInt returns the absolute value of an int
 func AbsInt(a int) int {
-    if a >= 0 {
-        return a
-    }
+	if a >= 0 {
+		return a
+	}
 
-    return -a
+	return -a
 }
 
 // MaxInt returns the maximum int from multiple given ints
 func MaxInt(ints ...int) (m int) {
-    m = MinInf
-    for _, v := range ints {
-        if v > m {
-            m = v
-        }
-    }
+	m = MinInf
+	for _, v := range ints {
+		if v > m {
+			m = v
+		}
+	}
 
-    return
+	return
 }
 
 // MaxIntIndex returns the index corresponding to the maximum int
 func MaxIntIndex(ints ...int) (i int) {
-    m := MinInf
-    for k, v := range ints {
-        if v >= m {
-            m, i = v, k
-        }
-    }
+	m := MinInf
+	for k, v := range ints {
+		if v >= m {
+			m, i = v, k
+		}
+	}
 
-    return
+	return
 }
 
 // MinInt returns the minimum int from multiple given ints
 func MinInt(ints ...int) (m int) {
-    m = Inf
-    for _, v := range ints {
-        if v < m {
-            m = v
-        }
-    }
+	m = Inf
+	for _, v := range ints {
+		if v < m {
+			m = v
+		}
+	}
 
-    return
+	return
 }
 
 // MinIntIndex returns the index corresponding to the minimum int
 func MinIntIndex(ints ...int) (i int) {
-    m := Inf
-    for k, v := range ints {
-        if v <= m {
-            m, i = v, k
-        }
-    }
+	m := Inf
+	for k, v := range ints {
+		if v <= m {
+			m, i = v, k
+		}
+	}
 
-    return
+	return
+}
+
+// NewInts returns a new []int, possibly initialized to some value (if given)
+func NewInts(size int, opts ...int) (out []int) {
+	out = make([]int, size)
+
+	if len(opts) > 0 {
+		defVal := opts[0]
+		for k := range out {
+			out[k] = defVal
+		}
+	}
+
+	return
+}
+
+// IntsEq compares two []int (int slices) for equality
+func IntsEq(a, b []int) bool {
+	if len(a) != len(b) {
+		return false
+	}
+
+	for k, v := range a {
+		if b[k] != v {
+			return false
+		}
+	}
+
+	return true
+}
+
+// IntsHas checks if "a" ints slice has a value of "n".
+func IntsHas(a []int, n int) bool {
+	for _, v := range a {
+		if v == n {
+			return true
+		}
+	}
+
+	return false
+}
+
+// IntsSum returns a sum of all ints in the slice.
+func IntsSum(a []int) (sum int) {
+	for _, v := range a {
+		sum += v
+	}
+
+	return
 }
